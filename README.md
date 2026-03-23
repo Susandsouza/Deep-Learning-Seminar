@@ -450,69 +450,17 @@ RNN → Final hidden state: 0.87
 
 ## 📚 References
 
-- GeeksforGeeks – Neural Networks & Backpropagation  
+- GeeksforGeeks – Neural Networks & Backpropagation
+  https://www.geeksforgeeks.org/machine-learning/backpropagation-in-neural-network/
 
 ---
 
 ## 👩‍💻 Author
 
-## 🔹 5. Algorithm
+SUSAN 
 
-**Step-by-step:**
+SIMRAN
 
-1. Initialize hidden state (h₀ = 0)  
-2. For each time step:
-   - Compute hidden state  
-   - Compute output  
-3. Calculate total loss  
-4. Unroll the network through time  
-5. Backpropagate errors from last time step to first  
-6. Accumulate gradients  
-7. Update shared weights  
-8. Repeat until convergence  
 
----
-
-## 🔹 6. Calculation Example
-
-**Input sequence:** x = [1, 2, 3]  
-
-Assume:
-- Initial hidden state h₀ = 0  
-- Weight W = 0.5  
-
----
-
-### Step 1: Forward Pass
-
-h₁ = tanh(0.5 × 1 + 0) = 0.462  
-h₂ = tanh(0.5 × 2 + 0.462) ≈ 0.905  
-h₃ = tanh(0.5 × 3 + 0.905) ≈ 0.998  
-
----
-
-### Step 2: Output
-
-Final output depends on h₃  
-
-y ≈ 0.998  
-
----
-
-### Step 3: Loss
-
-Assume expected output = 1  
-
-L = (1 − 0.998)² ≈ very small  
-
----
-
-### Step 4: Backward Pass (BPTT)
-
-- Error flows from h₃ → h₂ → h₁  
-- Gradients are accumulated across time  
-
----
-Mini Seminar Project  
 B.Tech – Information Science Engineering  
 
