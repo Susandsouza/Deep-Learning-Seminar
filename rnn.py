@@ -8,4 +8,5 @@ h = 0
 for x in inputs:
     h = np.tanh(W * x + h)
 
+print("Initial weight input :", W)
 print("Final hidden state:", h)
