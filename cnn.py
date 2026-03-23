@@ -15,5 +15,12 @@ kernel = np.array([
 ])
 
 output = np.sum(image * kernel)
+gradient = np.ones_like(kernel) * 0.01
+learning_rate = 0.1
+kernel = kernel - learning_rate * gradient
 
+print("Initial Kernel:", kernel)
+print("Input Image:", image)
 print("Convolution Output:", output)
+print("\nUpdated Kernel:",kernel)
+
