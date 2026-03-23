@@ -22,17 +22,6 @@ This project presents a clear and practical comparison of how **Backpropagation*
 
 The focus is not just theory — but **understanding through simple, executable code**.
 
----
-
-## 🧭 Why This Project?
-
-Understanding backpropagation is easy in ANN.  
-But things change when:
-
-- 📸 Spatial data → CNN  
-- 🔁 Sequential data → RNN  
-
-This project helps you **see those differences clearly**.
 
 ---
 
@@ -74,7 +63,334 @@ x₁ → [h] → x₂ → [h] → x₃ → [h]
 ✔ Backpropagation through time  
 
 ---
+## Backpropagation Overview
+Backpropagation is the core learning algorithm used in neural networks to minimize error by updating weights using gradients.
 
+It works in two main phases:
+1. **Forward Pass** – Compute output
+2. **Backward Pass** – Compute gradients and update weights
+
+## 📐 Gradient Formula
+The gradient measures how much the loss function changes with respect to weights.
+
+General form:
+
+∂L / ∂W = (∂L / ∂y) · (∂y / ∂W)
+
+Where:
+- L = Loss function  
+- W = Weights  
+- y = Output  
+
+👉 Using chain rule:
+δ = (y_actual − y_predicted) × f'(z)
+
+This helps in propagating error backward through layers.
+
+## ⚙️ Weight Update Rule
+
+Weights are updated using Gradient Descent:
+
+W_new = W_old − η · (∂L / ∂W)
+
+Where:
+- η (eta) = Learning rate  
+- ∂L/∂W = Gradient  
+---
+## 🧠 Backpropagation in ANN
+
+Backpropagation in Artificial Neural Networks (ANN) is used to minimize error by updating weights using gradient descent and the chain rule.
+
+---
+
+## 🔹 1. Forward Propagation
+
+In forward propagation, input data passes through layers to produce an output.
+
+**Formula:**
+
+y = f(Wx + b)
+
+Where:
+- W = Weights  
+- x = Input  
+- b = Bias  
+- f = Activation Function
+- 
+---
+
+## 🔹 2. Loss Function
+
+The loss function measures how far the predicted output is from the actual output.
+
+**Mean Squared Error (MSE):**
+
+L = (1/n) Σ (y_actual − y_predicted)²
+
+👉 Goal: Minimize this loss
+
+---
+
+## 🔹 3. Gradient Computation (Chain Rule)
+
+Gradients tell us how to adjust weights to reduce loss.
+
+**Chain Rule:**
+
+∂L/∂W = (∂L/∂y) × (∂y/∂W)
+
+**Error term:**
+
+δ = (y_actual − y_predicted) × f'(z)
+
+---
+
+## 🔹 4. Algorithm
+
+**Step-by-step:**
+
+1. Initialize weights randomly  
+2. Perform forward propagation  
+3. Compute loss  
+4. Calculate gradients using chain rule  
+5. Update weights using gradient descent  
+6. Repeat until convergence  
+
+---
+
+## 🔹 5. Calculation Example
+
+**Problem:**
+Input x = 2, Expected output y = 4  
+
+---
+
+### Step 1: Initialize
+W = 1 (random)  
+Learning rate (η) = 0.01  
+
+---
+
+### Step 2: Forward Pass
+y_pred = x × W = 2 × 1 = 2  
+
+---
+
+### Step 3: Loss
+L = (4 − 2)² = 4  
+
+---
+
+### Step 4: Gradient
+∂L/∂W = -2 × x × (y_actual − y_pred)
+
+= -2 × 2 × (4 − 2)  
+= -8  
+
+---
+
+### Step 5: Weight Update
+
+W_new = W_old − η × gradient  
+
+= 1 − (0.01 × -8)  
+= 1.08  
+
+---
+👉 After multiple iterations, W → 2  
+
+---
+## 🧠 Backpropagation in CNN
+
+Backpropagation in Convolutional Neural Networks (CNN) extends standard backpropagation by applying gradients over convolutional filters and spatial structures.
+
+---
+
+## 🔹 1. Convolutional Operation
+
+CNNs use filters (kernels) to extract features from input data such as images.
+
+**Formula:**
+
+Feature Map = Input ⊗ Kernel
+
+Where:
+- ⊗ = Convolution operation  
+- Kernel = Filter matrix  
+- Output = Feature map  
+
+---
+
+## 🔹 2. Kernel Update Rule
+
+Instead of updating individual weights like ANN, CNN updates **filter values (kernels)**.
+
+**Update Rule:**
+
+K_new = K_old − η · (∂L / ∂K)
+
+Where:
+- K = Kernel  
+- η = Learning rate  
+- ∂L/∂K = Gradient of loss w.r.t kernel  
+
+---
+
+## 🔹 3. Gradient Computation (Chain Rule)
+
+Gradients are computed using the chain rule across convolution layers.
+
+**Formula:**
+
+∂L/∂K = Input ⊗ δ
+
+Where:
+- δ = Error propagated backward  
+- Input = Input feature map  
+
+---
+
+## 🔹 4. Algorithm
+
+**Step-by-step:**
+
+1. Apply convolution using kernel  
+2. Apply activation function (ReLU)  
+3. Perform pooling (optional)  
+4. Flatten output  
+5. Pass through fully connected layer  
+6. Compute loss  
+7. Backpropagate error:
+   - Fully connected layer  
+   - Flatten layer  
+   - Pooling layer  
+   - Convolution layer  
+8. Update kernel values  
+9. Repeat until convergence  
+
+---
+
+## 🔹 5. Calculation Example
+
+**Input (3×3 Image):**
+
+[ 1  2  3 ]  
+[ 4  5  6 ]  
+[ 7  8  9 ]  
+
+**Kernel (3×3):**
+
+[ 1  0  -1 ]  
+[ 1  0  -1 ]  
+[ 1  0  -1 ]  
+
+---
+## EXAMPLE :
+### Step 1: Convolution
+
+Output = sum of element-wise multiplication:
+
+= (1×1 + 2×0 + 3×-1)  
++ (4×1 + 5×0 + 6×-1)  
++ (7×1 + 8×0 + 9×-1)  
+
+= (1 + 0 − 3)  
++ (4 + 0 − 6)  
++ (7 + 0 − 9)  
+
+= -2 + -2 + -2 = **-6**
+
+---
+
+### Step 2: Loss (example)
+
+Assume expected output = 0  
+
+L = (0 − (-6))² = 36  
+
+---
+
+### Step 3: Gradient (intuition)
+
+Gradient is calculated w.r.t each kernel element using input values.
+
+Example:
+∂L/∂K ≈ Input × error  
+
+---
+
+### Step 4: Kernel Update
+
+K_new = K_old − η × gradient  
+
+👉 Kernel values adjust to reduce error in next iteration  
+
+---
+## 🧠 Backpropagation in RNN
+
+Backpropagation in Recurrent Neural Networks (RNN) is performed using **Backpropagation Through Time (BPTT)**, where gradients are propagated across time steps instead of layers.
+
+---
+
+## 🔹 1. Hidden State Equation
+
+The hidden state stores information from previous time steps.
+
+**Formula:**
+
+h_t = f(W_hh · h_{t-1} + W_xh · x_t + b_h)
+
+Where:
+- h_t = current hidden state  
+- h_{t-1} = previous hidden state  
+- x_t = input at time t  
+- W_hh = hidden-to-hidden weights  
+- W_xh = input-to-hidden weights  
+- b_h = bias  
+
+---
+
+## 🔹 2. Output Equation
+
+The output at each time step depends on the hidden state.
+
+**Formula:**
+
+y_t = f(W_hy · h_t + b_y)
+
+Where:
+- y_t = output at time t  
+- W_hy = hidden-to-output weights  
+- b_y = bias  
+
+---
+
+## 🔹 3. Loss Function
+
+Loss is calculated across all time steps.
+
+**Example (MSE):**
+
+L = Σ (y_actual_t − y_predicted_t)²
+
+👉 Total loss = sum of losses over sequence
+
+---
+
+## 🔹 4. Backpropagation Through Time (BPTT)
+
+Instead of normal backpropagation, RNN unfolds across time steps.
+
+**Key Idea:**
+- Network is expanded into multiple time steps  
+- Gradients are computed at each step  
+- Errors flow backward through time  
+
+**Formula:**
+
+δ_t = (δ_{t+1} · W_hh) × f'(h_t)
+
+---
 ## ⚙️ How Backpropagation Differs
 
 | Aspect | ANN | CNN | RNN |
@@ -140,6 +456,63 @@ RNN → Final hidden state: 0.87
 
 ## 👩‍💻 Author
 
+## 🔹 5. Algorithm
+
+**Step-by-step:**
+
+1. Initialize hidden state (h₀ = 0)  
+2. For each time step:
+   - Compute hidden state  
+   - Compute output  
+3. Calculate total loss  
+4. Unroll the network through time  
+5. Backpropagate errors from last time step to first  
+6. Accumulate gradients  
+7. Update shared weights  
+8. Repeat until convergence  
+
+---
+
+## 🔹 6. Calculation Example
+
+**Input sequence:** x = [1, 2, 3]  
+
+Assume:
+- Initial hidden state h₀ = 0  
+- Weight W = 0.5  
+
+---
+
+### Step 1: Forward Pass
+
+h₁ = tanh(0.5 × 1 + 0) = 0.462  
+h₂ = tanh(0.5 × 2 + 0.462) ≈ 0.905  
+h₃ = tanh(0.5 × 3 + 0.905) ≈ 0.998  
+
+---
+
+### Step 2: Output
+
+Final output depends on h₃  
+
+y ≈ 0.998  
+
+---
+
+### Step 3: Loss
+
+Assume expected output = 1  
+
+L = (1 − 0.998)² ≈ very small  
+
+---
+
+### Step 4: Backward Pass (BPTT)
+
+- Error flows from h₃ → h₂ → h₁  
+- Gradients are accumulated across time  
+
+---
 Mini Seminar Project  
 B.Tech – Information Science Engineering  
 
