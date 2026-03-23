@@ -6,6 +6,11 @@
 ![Level](https://img.shields.io/badge/Level-Beginner--Intermediate-yellow.svg)
 
 ---
+Team Members:
+
+Member 1: Susan
+
+Member 2: Simran
 
 ## ✨ Overview
 
