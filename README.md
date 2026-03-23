@@ -143,13 +143,3 @@ RNN → Final hidden state: 0.87
 Mini Seminar Project  
 B.Tech – Information Science Engineering  
 
----
-
-## 🌟 Final Note
-
-This project is designed to be:
-- Clean  
-- Understandable  
-- Viva-ready  
-
-If it helped you, consider ⭐ starring the repo!
