@@ -14,10 +14,10 @@ kernel = np.array([
     [1,0,-1]
 ])
 
-output = np.sum(image * kernel)
-gradient = np.ones_like(kernel) * 0.01
+output = np.sum(image * kernel) #convolutional output 
+gradient = np.ones_like(kernel) * 0.01 #creatig  g for each k 
 learning_rate = 0.1
-kernel = kernel - learning_rate * gradient
+kernel = kernel - learning_rate * gradient # Updated moves it slightly in the opposite direction of the gradient.
 
 print("Initial Kernel:", kernel)
 print("Input Image:", image)
